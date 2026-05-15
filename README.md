@@ -1,10 +1,34 @@
 # LearningSteps Lockdown
 
-This repository documents an end-to-end cloud and API security lab built around a FastAPI application hosted in Azure.
+This repository documents an end-to-end cloud and API security project built around a FastAPI application hosted in Azure.
 
-The project demonstrates practical work across identity, reverse proxying, database isolation, HTTPS hardening, rate limiting, and web application firewall controls. The repository contains the implementation runbook and final documentation used to build and verify the environment.
+The project focuses on one practical goal: reduce direct exposure, enforce identity-aware access, and validate that the application behaves securely from the public entry point to the backend data tier.
 
 The public version of this repository uses sanitized infrastructure identifiers and placeholders so the implementation can be shared without exposing tenant-specific metadata.
+
+## Project Summary
+
+LearningSteps Lockdown hardens a public-facing API by layering identity, reverse proxying, transport security, backend isolation, and edge protections.
+
+The final design combines:
+
+- Microsoft Entra ID for API identity
+- `oauth2-proxy` for bearer-token validation
+- Nginx for reverse proxying and HTTPS termination
+- Azure PostgreSQL Flexible Server in a private backend tier
+- rate limiting and ModSecurity-based request filtering
+
+## Architecture
+
+The project architecture is summarized in [images/linkedin-architecture-diagram.png](images/linkedin-architecture-diagram.png).
+
+## Outcomes
+
+- Anonymous access returned `401 Unauthorized`
+- Invalid bearer tokens returned `403 Forbidden`
+- Valid bearer tokens returned `200 OK`
+- Direct public access to the backend database tier was removed
+- Edge protections were added in front of the application path
 
 ## Project Highlights
 
@@ -32,7 +56,8 @@ The public version of this repository uses sanitized infrastructure identifiers 
 
 - `LearningSteps-Lockdown-API-Security-Runbook.md` - sanitized implementation runbook with commands, troubleshooting notes, and verification steps
 - `LINKEDIN_POST.md` - LinkedIn-ready project summary for public sharing
-- `images/linkedin-architecture-diagram.mmd` - Mermaid source for a simple architecture diagram
+- `images/linkedin-architecture-diagram.mmd` - Mermaid source for the architecture diagram
+- `images/linkedin-architecture-diagram.png` - PNG export for GitHub and LinkedIn use
 
 ## Why This Repository Exists
 
@@ -49,6 +74,8 @@ It reflects hands-on work with:
 ## Scope Note
 
 This repository currently contains the project documentation artifacts. The full application source tree used on the VM is not included here.
+
+That means the strongest evidence in this repository is the security design, validation logic, troubleshooting path, and implementation runbook rather than a full application codebase.
 
 ## Public Sharing Note
 
