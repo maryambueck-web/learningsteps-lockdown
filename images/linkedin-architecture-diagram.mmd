@@ -1,0 +1,15 @@
+flowchart LR
+    Client[Public client]
+    Entra[Microsoft Entra ID]
+    Nginx[Nginx reverse proxy\nHTTPS termination]
+    Proxy[oauth2-proxy\nBearer token validation]
+    API[FastAPI application\nLocal backend service]
+    DB[Azure PostgreSQL Flexible Server\nPrivate backend tier]
+    Edge[Rate limiting + ModSecurity\nEdge protections]
+
+    Client --> Nginx
+    Nginx --> Edge
+    Edge --> Proxy
+    Proxy --> API
+    API --> DB
+    Proxy -. validates tokens .-> Entra
