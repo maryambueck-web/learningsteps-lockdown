@@ -59,17 +59,6 @@ The project architecture is summarized in [images/linkedin-architecture-diagram.
 - `images/linkedin-architecture-diagram.mmd` - Mermaid source for the architecture diagram
 - `images/linkedin-architecture-diagram.png` - PNG export for GitHub and LinkedIn use
 
-## Why This Repository Exists
-
-This repository is meant to show the ability to design, implement, troubleshoot, and document a realistic API security setup rather than only describe it at a high level.
-
-It reflects hands-on work with:
-
-- securing public access paths
-- isolating backend services from direct exposure
-- validating identity and token flows
-- migrating data into a private database tier
-- applying layered edge protections in front of an application
 
 ## Scope Note
 
